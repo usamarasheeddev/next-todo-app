@@ -5,7 +5,6 @@ export default function page() {
   return (
     <div>
     Home div
-      <Link href='/pages/about'>About </Link>
     </div>
   )
 }
