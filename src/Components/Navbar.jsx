@@ -1,13 +1,17 @@
  "use client"
  import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+ import { Disclosure, Menu, Transition } from '@headlessui/react'
+ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+ import Link from 'next/link'
+ import  {useRouter,usePathname}  from 'next/navigation'
+// import  useRouter  from 'next/router'
+// import Router from 'next/router'
+import React from 'react'
 
 const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'Home', href: '/pages/home', current: false },
-  { name: 'About', href: '/pages/about', current: false },
+  { name: 'Dashboard', href: '/',current:false },
+  { name: 'Home', href: '/pages/home',current:false },
+  { name: 'About', href: '/pages/about',current:false },
 //   { name: 'Calendar', href: '#', current: false },
 ]
 
@@ -16,6 +20,11 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const router=useRouter()
+  const pathName=usePathname()
+
+ 
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -45,16 +54,18 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </Link>
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        pathName === item.href
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'rounded-md px-3 py-2 text-sm font-medium'
+                      )}
+                      aria-current={pathName === item.href ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Link>
                     ))}
                   </div>
                 </div>
@@ -138,7 +149,8 @@ export default function Navbar() {
                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={pathName === item.href ? '/' : undefined}
+
                 >
                   {item.name}
                 </Disclosure.Button>

@@ -1,6 +1,6 @@
 "use client"
 
-import Navbar from '../../Components/Navbar'
+import Navbar from '../Components/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
