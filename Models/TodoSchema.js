@@ -1,5 +1,5 @@
-import { model, Schema } from "mongoose";
-
+import {  Schema } from "mongoose";
+import mongoose from "mongoose";
 const TodoSchema = new Schema({
     title: {
         type: String,
@@ -19,4 +19,6 @@ const TodoSchema = new Schema({
     }
 });
 
-export const Todo = model("Todos", TodoSchema);
+mongoose.models={}
+
+export const Todo = mongoose.model("todo", TodoSchema);
