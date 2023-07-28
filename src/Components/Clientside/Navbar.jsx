@@ -10,8 +10,8 @@ import React from 'react'
 
 const navigation = [
   { name: 'Dashboard', href: '/',current:false },
-  { name: 'Home', href: '/pages/home',current:false },
-  { name: 'About', href: '/pages/about',current:false },
+  { name: 'Home', href: '/home',current:false },
+  { name: 'About', href: '/about',current:false },
 //   { name: 'Calendar', href: '#', current: false },
 ]
 

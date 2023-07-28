@@ -4,12 +4,16 @@ import Navbar from '../Components/Clientside/Navbar'
 import InputForm from '../Components/Clientside/inputForm'
 import { Typography, Box } from '@mui/material'
 import TodosList from '@/Components/Clientside/TodosList'
-import TodosServer from '@/Components/ServerSide/TodosServer'
+import { connectDb } from '@/utils/connectDb'
 
 export default function page() {
+
+connectDb()
+
   return (
     <div style={{ width: '100%' }}>
       <InputForm />
+      
 
 
 

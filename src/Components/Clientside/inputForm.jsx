@@ -3,8 +3,8 @@ import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
 import { TodosContext } from './TodoProvider'
-
-
+import AddTodo from '@/pages/api/addTodo'
+import {connectDb} from '../../utils/connectDb'
 export default function InputForm() {
     const { todos, setTodos } = useContext(TodosContext)
     const [todo, setTodo] = React.useState({ title: '', description: '' })
@@ -12,16 +12,16 @@ export default function InputForm() {
 
 
 
-    const addTodo = () => {
-        setTodos([...todos, { ...todo, id: todos.length + 1 }])
-    }
+ 
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
+         
         if (todo.title && todo.description != '') {
 
             addTodo()
             setTodo({ title: '', description: '' })
+
         }
     }
 
