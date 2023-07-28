@@ -8,16 +8,15 @@ import { connectDb } from '@/utils/connectDb'
 
 export default function page() {
 
-connectDb()
 
   return (
     <div style={{ width: '100%' }}>
+
+
       <InputForm />
-      
 
 
-
-      <Box sx={{ margin: 'auto',display:'felx',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+      <Box sx={{ margin: 'auto', display: 'felx', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 
         <Typography align='center' variant='h5'>
           Todos List

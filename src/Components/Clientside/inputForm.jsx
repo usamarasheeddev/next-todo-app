@@ -5,12 +5,18 @@ import { useContext } from 'react'
 import { TodosContext } from './TodoProvider'
 import AddTodo from '@/pages/api/addTodo'
 import {connectDb} from '../../utils/connectDb'
+import { AuthContext } from './authProvider'
+import { useRouter } from 'next/navigation'
 export default function InputForm() {
     const { todos, setTodos } = useContext(TodosContext)
+    const{ user,authenticated } = useContext(AuthContext)
+    const router = useRouter()
     const [todo, setTodo] = React.useState({ title: '', description: '' })
 
 
-
+React.useEffect(() => {
+!authenticated&&router.push('/auth/login')
+},[])
 
  
 
