@@ -16,7 +16,7 @@ export default function InputForm() {
 
 React.useEffect(() => {
 !authenticated&&router.push('/auth/login')
-},[])
+},[authenticated])
 
  
 
