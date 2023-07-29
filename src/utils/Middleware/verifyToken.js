@@ -1,8 +1,14 @@
 import jwt from 'jsonwebtoken'
 
 export default function verifyToken(req, res, next) {
+    const cookies = req.headers.cookie;
+    if (!cookies) {
+        return res.status(401).json({ message: 'Access denied!', success: false });
+    }
 
-    const token = req.headers.authorization
+    // console.log(cookies.split(';')[0].split('=')[1]);
+    const token = cookies.split(';')[0].split('=')[1]
+    // const token = req.headers.authorization
     if (!token) {
         return res.status(401).json({ message: 'Access denied!', success: false });
     }

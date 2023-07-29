@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import User from '../../../Models/UserSchema';
 import { connectDb } from '@/utils/connectDb';
+import cookie from 'cookie'
 export default async function handler(req, res) {
     if (req.method != 'POST') {
         return res.status(400).json({ message: "method not supported", success: false });
@@ -37,7 +38,13 @@ export default async function handler(req, res) {
         //createing jwt token
         const token = jwt.sign({ id: user._id.toString() }, process.env.JWT_SECRET)
 
-        res.status(201).json({ message: 'User logged in', success: true, user: userWithoutPassword, token: token });
+        res.setHeader('Set-Cookies', cookie.serialize('token', token, {
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 100
+            // expires: new Date(Date.now() + 7 * 60 * 60 * 1000),
+        }))
+
+        res.status(201).json({ message: 'User logged in', success: true, user: userWithoutPassword });
 
     } catch (error) {
         res.status(500).json({ message: error.message, success: false });
