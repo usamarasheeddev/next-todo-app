@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 export default function verifyToken(req, res, next) {
 
-    const token = req.headers.auth - token;
+    const token=req.headers.authorization
     if (!token) {
         return res.status(401).json({ message: 'Access denied!', success: false });
     }
@@ -13,6 +13,7 @@ export default function verifyToken(req, res, next) {
 
     }
     const user = jwt.decode(token, process.env.JWT_SECRET);
+    console.log(user)
     req.user = user;
     next();
 

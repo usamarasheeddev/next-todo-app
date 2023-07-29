@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
 
         //createing jwt token
-        const token = jwt.sign({ _id: user.user_id }, process.env.JWT_SECRET)
+        const token = jwt.sign({ id: user._id.toString() }, process.env.JWT_SECRET)
 
         res.status(201).json({ message: 'User logged in', success: true, user: userWithoutPassword, token: token });
 
