@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
         res.setHeader('Set-Cookies', cookie.serialize('token', token, {
             httpOnly: true,
-            maxAge: 7 * 24 * 60 * 60 * 100
+            maxAge: new Date(Date.now() + 7 * 60 * 60 * 1000)
             // expires: new Date(Date.now() + 7 * 60 * 60 * 1000),
         }))
 

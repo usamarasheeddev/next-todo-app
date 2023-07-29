@@ -8,6 +8,12 @@ export default function verifyToken(req, res, next) {
 
     // console.log(cookies.split(';')[0].split('=')[1]);
     const token = cookies.split(';')[0].split('=')[1]
+    const maxAge = cookies.split(';')[1].split('=')[1];
+    // console.log(Date.now());
+    // console.log(maxAge);
+    if (Date.now() >= maxAge) {
+        return res.status(401).json({ message: 'Seccion expired', success: false });
+    }
     // const token = req.headers.authorization
     if (!token) {
         return res.status(401).json({ message: 'Access denied!', success: false });
