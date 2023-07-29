@@ -2,6 +2,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import User from '../../../Models/UserSchema';
+
 import { connectDb } from '@/utils/connectDb';
 import cookie from 'cookie'
 export default async function handler(req, res) {
