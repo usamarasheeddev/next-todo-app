@@ -4,7 +4,6 @@ export default async function (req, res) {
     try {
         res.setHeader('Set-Cookie', cookie.serialize('token', '', {
             httpOnly: true,
-            secure: true,
             maxAge: 0
         }));
 

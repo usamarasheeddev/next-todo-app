@@ -3,7 +3,6 @@ import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useContext } from 'react'
 import { TodosContext } from './TodoProvider'
-import AddTodo from '@/pages/api/addTodo'
 import { connectDb } from '../../utils/connectDb'
 import { AuthContext } from './authProvider'
 import { useRouter } from 'next/navigation'
@@ -21,7 +20,6 @@ export default function InputForm() {
         const fetchData = async () => {
             try {
                 const response = await axios.post(`http://localhost:3000/api/verifyUser`);
-                console.log(response.data);
                 setUser(response.data.user);
                 router.push('/');
                 setAuthenticated(true);

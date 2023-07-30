@@ -8,7 +8,7 @@ export default function TodosList({ children }) {
     const { todos, setTodos } = useContext(TodosContext)
     return (
         <ul style={{width:'20rem',margin:'auto'}}>
-               {todos.map((todo) => {
+               {/* {todos.map((todo) => {
                 return <Box key={todo.id}>
 
                     <li >{todo.title}</li>
@@ -16,7 +16,8 @@ export default function TodosList({ children }) {
                     <hr/>
                 </Box>
 
-            })}
+            })} */}
+            {children}
          
         </ul>
     )

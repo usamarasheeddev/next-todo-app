@@ -5,6 +5,7 @@ import InputForm from '../Components/Clientside/inputForm'
 import { Typography, Box } from '@mui/material'
 import TodosList from '@/Components/Clientside/TodosList'
 import { connectDb } from '@/utils/connectDb'
+import TodosServer from '@/Components/ServerSide/TodosServer'
 
 export default function page() {
 
@@ -23,7 +24,9 @@ export default function page() {
         </Typography>
 
 
-        <TodosList />
+        <TodosList >
+          <TodosServer />
+        </TodosList>
 
       </Box>
     </div>
