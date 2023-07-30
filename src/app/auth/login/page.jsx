@@ -7,10 +7,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast'
 import { AuthContext } from '../../../Components/Clientside/authProvider.js';
 import { useRouter } from 'next/navigation';
-
 export default function page() {
     const [creds, setsetCreds] = React.useState({ email: '', password: '' })
-    const {user,setUser,setAuthenticated}= React.useContext(AuthContext)
+    const {user,setUser,setAuthenticated,authenticated}= React.useContext(AuthContext)
     const router=useRouter()
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -26,6 +25,11 @@ export default function page() {
         e.preventDefault()
         loginUser()
     }
+    React.useEffect(() => {
+        if (authenticated) {
+            router.push('/');
+        }
+    }, [authenticated, router]);
 
     const loginUser = async () => {
         try {
