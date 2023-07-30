@@ -1,18 +1,29 @@
-import {Todo} from '../../../Models/TodoSchema'
+import { Todo } from '../../../Models/TodoSchema'
 import { connectDb } from '@/utils/connectDb'
-
-export default async function handler(req, res) {
+import verifyToken from '@/utils/Middleware/verifyToken'
+import User from '../../../Models/UserSchema'
+export default async function fetchTodos(req, res) {
 
     if (req.method !== 'POST') {
         return res.status(401).json({ message: 'this method is not allowed' })
     }
-    if (!req.body.userId) {
-        return res.status(401).json({ message: 'Unauthorized' })
-    }
+
     try {
         await connectDb()
-        const todo = await Todo.find({userId:req.body.userId})
-        res.status(200).send(todo)
+        verifyToken(req, res, async () => {
+
+            const user = await User.findById(req.user.id).select('+password');
+            if (!user) {
+                return res.status(400).json({ message: 'User does not exist', success: false });
+            }
+
+
+            // if (!req.body.userId) {
+            //     return res.status(401).json({ message: 'Unauthorized' })
+            // }
+            const todo = await Todo.find({ userId: req.user.id })
+            res.status(200).send(todo)
+        });
     } catch (error) {
         res.status(500).send({ message: error })
     }

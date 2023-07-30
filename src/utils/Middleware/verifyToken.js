@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 
 export default function verifyToken(req, res, next) {
     const cookies = req.headers.cookie;
+    
     if (!cookies) {
         return res.status(401).json({ message: 'Access denied!', success: false });
     }
