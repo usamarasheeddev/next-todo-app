@@ -42,7 +42,8 @@ export default async function handler(req, res) {
         res.setHeader('Set-Cookie', cookie.serialize('token', token, {
             path:'/',
             httpOnly: true,
-            maxAge: new Date(Date.now() + 7 * 60 * 60 * 1000)
+            maxAge: 7 * 60 * 60 
+            // maxAge: new Date(Date.now() + 7 * 60 * 60 * 1000)
             // expires: new Date(Date.now() + 7 * 60 * 60 * 1000),
         }))
 

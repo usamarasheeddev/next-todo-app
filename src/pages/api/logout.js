@@ -2,9 +2,10 @@ import cookie from 'cookie';
 
 export default async function (req, res) {
     try {
-        res.setHeader('Set-Cookie', cookie.serialize('token', '', {
+        await res.setHeader('Set-Cookie', cookie.serialize('token', '', {
             httpOnly: true,
-            maxAge: 0
+            maxAge: 0,
+            path:'/'
         }));
 
         res.status(200).json({

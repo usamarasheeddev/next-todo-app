@@ -45,6 +45,7 @@ export default function InputForm() {
     const handleLogout = async () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/logout`);
+            // router.push('/')
             setAuthenticated(false)
             toast.success(response.data.message);
         } catch (error) {

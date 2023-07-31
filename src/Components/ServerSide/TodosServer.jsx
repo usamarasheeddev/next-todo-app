@@ -19,7 +19,7 @@ if(!token) return redirect('/auth/login')
                 },
             });
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             return data;
         } catch (error) {
             return [];
